@@ -562,6 +562,145 @@ body {
   outline: none;
 }
 
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: none;
+}
+
+.popup__body {
+  width: 100rem;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+}
+
+.popup__body .popup__close {
+  min-width: 5.2rem;
+  height: 5.2rem;
+  border: 2px solid #f1cdb3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.popup__body .popup__close-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.05rem;
+}
+
+.popup__body .popup__close:hover {
+  border: 2px solid rgba(255, 255, 255, 0);
+  background-color: #fddcc4;
+  cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
+}
+
+.popup__body .popup__content {
+  width: 90rem;
+  max-height: 50rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #fafafa;
+  border-radius: 0.5rem;
+}
+
+.popup__body .popup__content-img {
+  height: 50rem;
+  border-radius: 0.5rem;
+}
+
+.popup__body .popup__content__text {
+  width: 35rem;
+  padding-top: 5rem;
+  padding-right: 2rem;
+}
+
+.popup__body .popup__content__text-name {
+  font-family: Georgia;
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0.2rem;
+}
+
+.popup__body .popup__content__text-type {
+  font-family: Georgia;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 115%;
+  letter-spacing: 0.12rem;
+  margin-top: 1rem;
+}
+
+.popup__body .popup__content__text-description {
+  font-family: Georgia;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: 0.09rem;
+  font-size: 1.4rem;
+  margin: 4rem 0;
+}
+
+.popup__body .popup__content__text__info li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style-type: none;
+  font-family: Georgia;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: 0.09rem;
+}
+
+.popup__body .popup__content__text__info li span {
+  font-weight: bold;
+}
+
+.popup__body .popup__content__text__info li::before {
+  content: url(../../assets/icons/dot.png);
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+}
+
 .help__content__wrapper {
   width: 100%;
   padding: 8.1rem 0 10rem 0;
@@ -928,6 +1067,24 @@ body {
         -ms-flex-order: -1;
             order: -1;
   }
+  .popup__body {
+    width: 73rem;
+  }
+  .popup__body .popup__content {
+    width: 63rem;
+    max-height: 37rem;
+  }
+  .popup__body .popup__content-img {
+    height: 37rem;
+  }
+  .popup__body .popup__content__text {
+    width: 26rem;
+    padding-top: 1rem;
+    padding-right: 0.9rem;
+  }
+  .popup__body .popup__content__text-description {
+    margin: 2rem 0;
+  }
   .donation__content {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1056,6 +1213,27 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+  .popup__body {
+    width: 34rem;
+  }
+  .popup__body .popup__content {
+    width: 24rem;
+  }
+  .popup__body .popup__content-img {
+    display: none;
+  }
+  .popup__body .popup__content__text {
+    padding: 1rem;
+  }
+  .popup__body .popup__content__text-name {
+    text-align: center;
+  }
+  .popup__body .popup__content__text-type {
+    text-align: center;
+  }
+  .popup__body .popup__content__text-description {
+    margin: 2rem 0;
   }
   .about__content {
     padding: 2.8rem 1.5rem;

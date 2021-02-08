@@ -58,6 +58,32 @@
         }
     }
 
+    .popup {
+    
+        &__body {
+            width: 73rem;
+    
+            .popup__content {
+                width: 63rem;
+                max-height: 37rem;
+    
+                &-img {
+                    height: 37rem;
+                }
+    
+                &__text {
+                    width: 26rem;
+                    padding-top: 1rem;
+                    padding-right: 0.9rem;
+    
+                    &-description {
+                        margin: 2rem 0;
+                    }
+                }
+            }
+        }
+    }
+
     .donation__content {
         flex-direction: column;
         align-items: center;
@@ -176,6 +202,37 @@
 
         .not_only__img-smallest {
             display: flex;
+        }
+    }
+
+    .popup {
+    
+        &__body {
+            width: 34rem;
+    
+            .popup__content {
+                width: 24rem;
+
+                &-img {
+                    display: none;
+                }
+    
+                &__text {
+                    padding: 1rem;
+                    
+                    &-name {
+                        text-align: center;
+                    }
+
+                    &-type {
+                        text-align: center;
+                    }
+    
+                    &-description {
+                        margin: 2rem 0;
+                    }
+                }
+            }
         }
     }
 
