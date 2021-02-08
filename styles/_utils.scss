@@ -1,0 +1,88 @@
+@mixin logo_title {
+    font: {
+        family: Georgia;
+        size: 3.2rem;
+        weight: normal;
+    }
+    color: $color-primary;
+    line-height: 130%;
+    letter-spacing: 0.2rem;
+}
+
+@mixin logo_subtitle {
+    font: {
+        family: Arial;
+        size: 1.3rem;
+        weight: 400;
+    }
+    color: white;
+    letter-spacing: 0.13rem;
+}
+@mixin paragraph-l {
+    font: {
+        family: Arial;
+        size: 1.5rem;
+        weight: 400;
+    }
+    line-height: 162%;
+}
+
+@mixin paragraph-mobile-menu {
+    font: {
+        family: Arial;
+        size: 3.2rem;
+        weight: 400;
+    }
+    line-height: 150%;
+}
+
+@mixin h2 {
+    font: {
+        family: Georgia;
+        size: 4.3rem;
+        weight: 400;
+    }
+    color: $color-light-xl;
+    line-height: 130%;
+}
+
+@mixin h3 {
+    font: {
+        family: Georgia;
+        size: 3.5rem;
+        weight: 400;
+    }
+    line-height: 130%;
+    letter-spacing: 0.2rem;
+}
+
+@mixin h3-mobile {
+    font: {
+        family: Georgia;
+        size: 2.5rem;
+        weight: 400;
+    }
+    line-height: 130%;
+    letter-spacing: 0.15rem;
+    text-align: center;
+}
+
+@mixin h4 {
+    font: {
+        family: Georgia;
+        size: 2rem;
+        weight: 400;
+    }
+    line-height: 115%;
+    letter-spacing: 0.12rem;
+}
+
+@mixin h5 {
+    font: {
+        family: Georgia;
+        size: 1.5rem;
+        weight: 400;
+    }
+    line-height: 110%;
+    letter-spacing: 0.09rem;
+}
