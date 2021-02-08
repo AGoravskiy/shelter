@@ -54,10 +54,6 @@ body {
   transition: 1s;
 }
 
-.heder-wrapper-active .logo {
-  margin-right: auto;
-}
-
 .logo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -70,6 +66,7 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   text-decoration: none;
+  margin-right: auto;
   cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
 }
 
@@ -91,6 +88,31 @@ body {
   letter-spacing: 0.13rem;
   margin-top: 0.65rem;
   text-align: center;
+}
+
+.burger {
+  display: none;
+  width: 3rem;
+  height: 2.2rem;
+  position: absolute;
+  right: 5.2rem;
+  top: 2.2rem;
+  cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: 1s;
+  transition: 1s;
+  z-index: 40;
+}
+
+.burger div {
+  width: 100%;
+  border: 1px solid #f1cdb3;
 }
 
 .nav {
@@ -144,31 +166,6 @@ body {
 .nav .list__item__link-disable-span {
   color: #cdcdcd;
   cursor: url(../../assets/icons/icon-cursor.png), default;
-}
-
-.burger {
-  display: none;
-  width: 3rem;
-  height: 2.2rem;
-  position: absolute;
-  right: 5.2rem;
-  top: 2.2rem;
-  cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-transition: 1s;
-  transition: 1s;
-  z-index: 40;
-}
-
-.burger div {
-  width: 100%;
-  border: 1px solid #f1cdb3;
 }
 
 .main {
