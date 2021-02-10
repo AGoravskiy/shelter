@@ -1058,10 +1058,11 @@ body {
   }
   .popup__body .popup__content {
     width: 63rem;
-    max-height: 37rem;
+    max-height: 35rem;
+    margin-left: 1rem;
   }
   .popup__body .popup__content-img {
-    height: 37rem;
+    height: 35rem;
   }
   .popup__body .popup__content__text {
     width: 26rem;
@@ -1069,7 +1070,8 @@ body {
     padding-right: 0.9rem;
   }
   .popup__body .popup__content__text-description {
-    margin: 2rem 0;
+    margin: 1rem 0;
+    font-size: 1.3rem;
   }
   .donation__content {
     -webkit-box-orient: vertical;
@@ -1201,16 +1203,28 @@ body {
     display: flex;
   }
   .popup__body {
-    width: 34rem;
+    max-height: -webkit-max-content;
+    max-height: -moz-max-content;
+    max-height: max-content;
+    width: 33rem;
   }
   .popup__body .popup__content {
-    width: 24rem;
+    max-height: -webkit-max-content;
+    max-height: -moz-max-content;
+    max-height: max-content;
+    padding: 1rem;
+    max-width: 24rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0;
   }
   .popup__body .popup__content-img {
     display: none;
   }
   .popup__body .popup__content__text {
-    padding: 1rem;
+    padding: 0;
+    text-align: center;
   }
   .popup__body .popup__content__text-name {
     text-align: center;
@@ -1219,7 +1233,19 @@ body {
     text-align: center;
   }
   .popup__body .popup__content__text-description {
+    width: 22rem;
     margin: 2rem 0;
+    text-align: justify;
+  }
+  .popup__body .popup__content__text__info {
+    width: 22rem;
+    text-align: justify;
+  }
+  .popup__body .popup__content__text__info span {
+    font-size: 1.3rem;
+  }
+  .popup__body .popup__content__text__info li::before {
+    top: -0.4rem;
   }
   .about__content {
     padding: 2.8rem 1.5rem;

@@ -73,7 +73,7 @@ bgBurger.addEventListener('click', getBurgerMenu);
 ////////////////////
 //PETS ARRAY////////
 ////////////////////
-let randomPetsList = [];
+const randomPetsList = [];
 
 const getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
@@ -111,7 +111,7 @@ function genSliderContent() {
         }
 
         while (newSliderContent.length !== 3) {
-            let randomPets = uniqPets[getRandomInt(uniqPets.length-1)];
+            let randomPets = uniqPets[getRandomInt(uniqPets.length)];
             
             if (!newSliderContent.includes(randomPets) && !srcValues.includes(randomPets.img)) {
                 newSliderContent.push(randomPets);
@@ -119,7 +119,7 @@ function genSliderContent() {
         }
     } else {
         while (newSliderContent.length !== 3) {
-            let randomPets = uniqPets[getRandomInt(uniqPets.length-1)];
+            let randomPets = uniqPets[getRandomInt(uniqPets.length)];
             
             if (!newSliderContent.includes(randomPets)) {
                 newSliderContent.push(randomPets);
@@ -141,3 +141,63 @@ function genSliderContent() {
 }
 
 sliderBtns.forEach(btn => btn.addEventListener('click', genSliderContent));
+
+///////////////
+//POPUP////////
+///////////////
+
+const cards = document.querySelectorAll('.our_friends__slider-content > div');
+const body = document.querySelector('body');
+const popup = document.querySelector('.popup');
+const popupContent = document.querySelector('.popup__content');
+const popupBody = document.querySelector('.popup__body');
+
+let unlock = true;
+
+const timeout = 800;
+
+const genPopupContent = (target) => {
+    let petName;
+
+    if (target.children.length) {
+        petName = target.children[0].getAttribute('alt');
+    } else if (target.className === 'slider-img') {
+        petName = target.getAttribute('alt');
+    } else if (target.className === 'slider-content__card-title') {
+        petName = target.innerText;
+    } else if (target.className === 'slider-content__card-btn') {
+        petName = target.previousElementSibling.innerText;
+    }
+
+    const selectedPet = uniqPets.find(pet => pet.name === petName);
+
+    document.querySelector('.popup__content__text-name').textContent = `${selectedPet.name}`;
+    document.querySelector('.animal_type').textContent = `${selectedPet.type}`;
+    document.querySelector('.breed').textContent = `${selectedPet.breed}`;
+    document.querySelector('.popup__content-img').setAttribute('src', `${selectedPet.img}`);
+    document.querySelector('.popup__content-img').setAttribute('alt', `${selectedPet.name}`);
+    document.querySelector('.popup__content__text__info-age > .value').textContent = `${selectedPet.age}`;
+    document.querySelector('.popup__content__text__info-inoculations > .value').textContent = `${selectedPet.inoculations.join(', ')}`;
+    document.querySelector('.popup__content__text__info-diseases > .value').textContent = `${selectedPet.diseases.join(', ')}`;
+    document.querySelector('.popup__content__text__info-parasites > .value').textContent = `${selectedPet.parasites.join(', ')}`;
+}
+
+const openPopup = (e) => {
+    popup.classList.add('open');
+    genPopupContent(e.target);
+}
+
+const closePopup = () => {
+    popup.classList.remove('open');
+}
+
+if (cards.length > 0) {
+    cards.forEach(card => card.addEventListener('click', openPopup));
+}
+
+if (popupContent) {
+    console.log(popupContent.parentElement);
+    popupContent.addEventListener('click', (e) => e.stopPropagation());
+    popupBody.addEventListener('click', closePopup);
+    popup.addEventListener('click', closePopup);
+}

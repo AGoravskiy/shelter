@@ -65,10 +65,11 @@
     
             .popup__content {
                 width: 63rem;
-                max-height: 37rem;
+                max-height: 35rem;
+                margin-left: 1rem;
     
                 &-img {
-                    height: 37rem;
+                    height: 35rem;
                 }
     
                 &__text {
@@ -77,7 +78,8 @@
                     padding-right: 0.9rem;
     
                     &-description {
-                        margin: 2rem 0;
+                        margin: 1rem 0;
+                        font-size: 1.3rem;
                     }
                 }
             }
@@ -208,18 +210,24 @@
     .popup {
     
         &__body {
-            width: 34rem;
+            max-height: max-content;
+            width: 33rem;
     
             .popup__content {
-                width: 24rem;
+                max-height: max-content;
+                padding: 1rem;
+                max-width: 24rem;
+                align-items: center;
+                margin: 0;
 
                 &-img {
                     display: none;
                 }
     
                 &__text {
-                    padding: 1rem;
-                    
+                    padding: 0;
+                    text-align: center;
+
                     &-name {
                         text-align: center;
                     }
@@ -229,7 +237,22 @@
                     }
     
                     &-description {
+                        width: 22rem;
                         margin: 2rem 0;
+                        text-align: justify;
+                    }
+
+                    &__info {
+                        width: 22rem;
+                        text-align: justify;
+
+                        & span {
+                            font-size: 1.3rem;
+                        }
+
+                        li::before {
+                            top: -0.4rem;
+                        }
                     }
                 }
             }
