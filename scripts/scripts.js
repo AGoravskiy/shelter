@@ -93,8 +93,6 @@ const genRandomPets = () => {
     }
 }
 genRandomPets();
-console.log(randomPetsList);
-
 
 ////////////////
 //SLIDER////////
@@ -146,15 +144,12 @@ sliderBtns.forEach(btn => btn.addEventListener('click', genSliderContent));
 //POPUP////////
 ///////////////
 
-const cards = document.querySelectorAll('.our_friends__slider-content > div');
-const body = document.querySelector('body');
+const cards = document.querySelectorAll(
+    '.our_friends__slider-content > div, .pets__main-content-cards__container > div'
+);
 const popup = document.querySelector('.popup');
 const popupContent = document.querySelector('.popup__content');
 const popupBody = document.querySelector('.popup__body');
-
-let unlock = true;
-
-const timeout = 800;
 
 const genPopupContent = (target) => {
     let petName;
@@ -196,7 +191,6 @@ if (cards.length > 0) {
 }
 
 if (popupContent) {
-    console.log(popupContent.parentElement);
     popupContent.addEventListener('click', (e) => e.stopPropagation());
     popupBody.addEventListener('click', closePopup);
     popup.addEventListener('click', closePopup);
