@@ -70,30 +70,6 @@ burger.addEventListener('click', getBurgerMenu);
 window.addEventListener('resize', resizeWindow);
 bgBurger.addEventListener('click', getBurgerMenu);
 
-////////////////////
-//PETS ARRAY////////
-////////////////////
-const randomPetsList = [];
-
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * Math.floor(max));
-}
-
-const genRandomPets = () => {
-    let randomInt, tempItem;
-    for (let j = 0; j < 6; j++) {
-        let tempArr = uniqPets.slice();
-        for (let i = tempArr.length - 1; i > 0; i--){
-            randomInt = getRandomInt(i + 1);
-            tempItem = tempArr[randomInt];
-            tempArr[randomInt] = uniqPets[i];
-            tempArr[i] = tempItem;
-        }
-        randomPetsList.push([...tempArr]);
-    }
-}
-genRandomPets();
-
 ////////////////
 //SLIDER////////
 ////////////////
@@ -195,3 +171,149 @@ if (popupContent) {
     popupBody.addEventListener('click', closePopup);
     popup.addEventListener('click', closePopup);
 }
+
+////////////////////
+//PETS ARRAY////////
+////////////////////
+const randomPetsList = [];
+
+const getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+const genRandomPets = () => {
+    for (let j = 0; j < 6; j++) {
+        const tempArr = uniqPets.slice();
+        for (let i = tempArr.length - 1; i > 0; i--){
+            const randomIndex = getRandomInt(i + 1);
+            [tempArr[i], tempArr[randomIndex]] = [tempArr[randomIndex], tempArr[i]];
+        }
+        randomPetsList.push(...tempArr); 
+    }
+}
+genRandomPets();
+
+///////////////
+//Pagination///
+///////////////
+
+const rewindLeftBtn = document.querySelector('.rewind_left');
+const rewindOneLeftBtn = document.querySelector('.rewind_one_left');
+const rewindRightBtn = document.querySelector('.rewind_right');
+const rewindOneRightBtn = document.querySelector('.rewind_one_right');
+const container =  document.querySelector('.pets__main-content-cards__container');
+const pageCounter = document.querySelector('.paginations-btn-active');
+
+let pageNum = 1;
+let totalPetOnPage;
+let maxPageNum;
+
+const updatePaginationCards = () => {
+    const prevMaxPageNum = maxPageNum;
+    if (window.innerWidth < 767) {
+        totalPetOnPage = 3;
+    } else if (window.innerWidth < 1281) {
+        totalPetOnPage = 6;
+    } else {
+        totalPetOnPage = 8;
+    }
+
+    maxPageNum = randomPetsList.length / totalPetOnPage;
+
+    if (pageNum > 1) {
+        pageNum = Math.round(maxPageNum * pageNum / prevMaxPageNum);
+        pageCounter.textContent = pageNum;
+
+        if (pageNum === maxPageNum) {
+            rewindOneRightBtn.disabled = true;
+            rewindRightBtn.disabled = true;
+        }
+    }
+}
+
+updatePaginationCards();
+
+const addCardsContent = () => {
+    const newCards = [];
+    for (let i = 0; i < totalPetOnPage; i++) {
+        const petIndex = totalPetOnPage * (pageNum - 1) + i;
+        const pet = randomPetsList[petIndex];
+        const petCard = document.createElement('div');
+        petCard.setAttribute('class', 'slider-content__card');
+        const cardImg = document.createElement('img');
+        cardImg.setAttribute('class', 'slider-img');
+        cardImg.setAttribute('src', `${pet.img}`);
+        cardImg.setAttribute('alt', `${pet.name}`);
+        const petName = document.createElement('p');
+        petName.setAttribute('class', 'slider-content__card-title');
+        petName.textContent = pet.name;
+        const btn = document.createElement('button');
+        btn.setAttribute('class', 'slider-content__card-btn')
+        btn.textContent = 'Learn more';
+        petCard.append(cardImg, petName, btn);
+        petCard.addEventListener('click', openPopup);
+        newCards.push(petCard);
+    }
+    return newCards;
+}
+
+container.replaceChildren(...addCardsContent());
+
+const openFirstPage = () => {
+    pageNum = 1;
+    pageCounter.textContent = pageNum;
+    rewindLeftBtn.disabled = true;
+    rewindOneLeftBtn.disabled = true;
+    rewindRightBtn.disabled = false;
+    rewindOneRightBtn.disabled = false;
+    container.replaceChildren(...addCardsContent());
+}
+
+const openLastPage = () => {
+    pageNum = maxPageNum;
+    pageCounter.textContent = pageNum;
+    rewindOneRightBtn.disabled = true;
+    rewindRightBtn.disabled = true;
+    rewindLeftBtn.disabled = false;
+    rewindOneLeftBtn.disabled = false;
+    container.replaceChildren(...addCardsContent());
+}
+
+const openPrevPage = () => {
+    pageNum--;
+    pageCounter.textContent = pageNum;
+    if (pageNum === maxPageNum - 1) {
+        rewindRightBtn.disabled = false;
+        rewindOneRightBtn.disabled = false;
+    }
+    if (pageNum === 1) {
+        rewindLeftBtn.disabled = true;
+        rewindOneLeftBtn.disabled = true;
+    }
+    container.replaceChildren(...addCardsContent());
+}
+
+const openNextPage = () => {
+    pageNum++;
+    pageCounter.textContent = pageNum;
+    if (pageNum === 2) {
+        rewindLeftBtn.disabled = false;
+        rewindOneLeftBtn.disabled = false;
+    }
+    if (maxPageNum === pageNum) {
+        rewindOneRightBtn.disabled = true;
+        rewindRightBtn.disabled = true;
+    }
+    container.replaceChildren(...addCardsContent());
+}
+
+const changeWindowWidth = () => {
+    updatePaginationCards();
+    container.replaceChildren(...addCardsContent());
+}
+
+rewindLeftBtn.addEventListener('click', openFirstPage);
+rewindRightBtn.addEventListener('click', openLastPage);
+rewindOneLeftBtn.addEventListener('click', openPrevPage);
+rewindOneRightBtn.addEventListener('click', openNextPage);
+window.addEventListener('resize', changeWindowWidth);

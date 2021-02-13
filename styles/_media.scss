@@ -470,10 +470,6 @@
             .pets__main-content-cards__container {
                 padding: 0 0 1rem 0;
                 margin: 3rem 0;
-    
-                .slider-content__card:nth-last-child(-n + 2) {
-                    display: none;
-                }
             }
         }
     }
@@ -513,10 +509,6 @@
 
                 .slider-content__card {
                     width: 27rem;
-                }
-
-                .slider-content__card:nth-last-child(-n + 5) {
-                    display: none;
                 }
             }
         }
