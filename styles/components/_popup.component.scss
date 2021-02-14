@@ -1,0 +1,137 @@
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden ;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &:hover {
+        cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
+    }
+
+    &:hover .popup__close{
+        border: 2px solid rgba(255, 255, 255, 0);
+        background-color: $color-primary-l;
+        cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
+    }
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+
+        & .popup__body {
+            opacity: 1;
+            transform: translate(0px, 0px);
+        }
+    }
+
+    &__body {
+        width: 100rem;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        opacity: 0;
+        transition: all 0.8s ease 0s;
+        transform: translate(0px, -100%);
+
+        .popup__close {
+            min-width: 5.2rem;
+            height: 5.2rem;
+            border: 2px solid $color-primary;
+            display: flex;
+            align-items: center;
+            align-self: flex-end;
+            justify-content: center;
+            border-radius: 50%;
+            transition-duration: 0.5s;
+
+            &-btn {
+                display: flex;
+                margin-top: 0.05rem;
+            }
+
+            &:hover {
+                border: 2px solid rgba(255, 255, 255, 0);
+                background-color: $color-primary-l;
+                cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
+            }
+        }
+
+        .popup__content {
+            width: 90rem;
+            max-height: 50rem;
+            display: flex;
+            justify-content: space-between;
+            background-color: $color-light-s;
+            border-radius: 0.5rem;
+            z-index: 40;
+
+            &:hover {
+                cursor: url(../../assets/icons/icon-cursor.png), default;
+            }
+
+            &:hover .popup__close{
+                border: 2px solid $color-primary;
+                background-color: none;
+            }
+
+            &-img {
+                height: 50rem;
+                border-radius: 0.5rem;
+            }
+
+            &__text {
+                width: 35rem;
+                padding-top: 5rem;
+                padding-right: 2rem;
+
+                &-name {
+                    @include h3();
+                }
+
+                &__type {
+                    @include h4();
+                    margin-top: 1rem;
+                }
+
+                &-description {
+                    @include h5();
+                    font-size: 1.4rem;
+                    margin: 4rem 0;
+                }
+
+                &__info {
+
+                    li {
+                        display: flex;
+                        list-style-type: none;
+                        @include h5();
+                        padding-left: 1.5rem;
+                        padding-bottom: 0.5rem;
+                        position: relative;
+
+                        & .key {
+                            font-weight: bold;
+                        }
+
+                        &::before {
+                            position: absolute;
+                            content: url(../../assets/icons/dot.png);
+                            left: 0.3rem;
+                            top: -0.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
