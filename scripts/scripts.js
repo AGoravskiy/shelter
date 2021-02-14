@@ -7,11 +7,6 @@ let burger = document.querySelector('.burger');
 let bgBurger = document.querySelector('.bg_burger');
 let burgerMenu = document.querySelector('.burger_menu');
 let logo = document.querySelector('.logo');
-let hederWrapper = document.querySelector('.heder-wrapper');
-let wrapper = document.querySelector('.wrapper');
-let main = document.querySelector('.main');
-let notOnly = document.querySelector('.not_only');
-let headerPets = document.querySelector('.header__pets');
 let burgerLines = document.querySelectorAll('.burger > div');
 let isBurgerOpen = false;
 
@@ -173,25 +168,52 @@ if (popupContent) {
 }
 
 ////////////////////
-//PETS ARRAY////////
+//RANDOM ARRAY//////
 ////////////////////
-const randomPetsList = [];
+const randomNumArr = [];
 
 const getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-const genRandomPets = () => {
-    for (let j = 0; j < 6; j++) {
-        const tempArr = uniqPets.slice();
-        for (let i = tempArr.length - 1; i > 0; i--){
-            const randomIndex = getRandomInt(i + 1);
-            [tempArr[i], tempArr[randomIndex]] = [tempArr[randomIndex], tempArr[i]];
+const mixArr = (arr) => {
+    const tempArr = arr.slice();
+    for (let i = tempArr.length - 1; i > 0; i--) {
+        const randomIndex = getRandomInt(i + 1);
+        [tempArr[i], tempArr[randomIndex]] = [tempArr[randomIndex], tempArr[i]];
+    }
+    return tempArr;
+}
+
+const checkDuplicateElements = (arr, subArrLength, element) => {
+    if (arr.length % subArrLength === 0) {
+        return false;
+    }
+    const subArr = arr.slice((arr.length - arr.length % subArrLength), arr.length);
+    return subArr.includes(element);
+}
+
+
+const getRandomNum = () => {
+    const uniqPetsLength = uniqPets.length;
+    const uniqNumArr = Array.apply(null, {length: uniqPetsLength}).map(Number.call, Number);
+    const mixedUniqNumArr = mixArr(uniqNumArr);
+    randomNumArr.push(...mixedUniqNumArr);
+    for (let i = 0; i < 5; i++) {
+        const newMixedUniqNumArr = mixArr(uniqNumArr);
+        while (newMixedUniqNumArr.length !== 0) {
+            for (let j = 0; j < newMixedUniqNumArr.length; j++) {
+                if(!(checkDuplicateElements(randomNumArr, 3, newMixedUniqNumArr[j])) 
+                && !(checkDuplicateElements(randomNumArr, 6, newMixedUniqNumArr[j]))) {
+                    randomNumArr.push(newMixedUniqNumArr[j]);
+                    newMixedUniqNumArr.splice(j, 1);
+                }
+            }
         }
-        randomPetsList.push(...tempArr); 
     }
 }
-genRandomPets();
+
+getRandomNum();
 
 ///////////////
 //Pagination///
@@ -218,7 +240,7 @@ const updatePaginationCards = () => {
         totalPetOnPage = 8;
     }
 
-    maxPageNum = randomPetsList.length / totalPetOnPage;
+    maxPageNum = randomNumArr.length / totalPetOnPage;
 
     if (pageNum > 1) {
         pageNum = Math.round(maxPageNum * pageNum / prevMaxPageNum);
@@ -237,7 +259,7 @@ const addCardsContent = () => {
     const newCards = [];
     for (let i = 0; i < totalPetOnPage; i++) {
         const petIndex = totalPetOnPage * (pageNum - 1) + i;
-        const pet = randomPetsList[petIndex];
+        const pet = uniqPets[randomNumArr[petIndex]];
         const petCard = document.createElement('div');
         petCard.setAttribute('class', 'slider-content__card');
         const cardImg = document.createElement('img');
@@ -257,7 +279,10 @@ const addCardsContent = () => {
     return newCards;
 }
 
-container.replaceChildren(...addCardsContent());
+if (container) {
+    container.replaceChildren(...addCardsContent());
+}
+
 
 const openFirstPage = () => {
     pageNum = 1;
@@ -312,8 +337,20 @@ const changeWindowWidth = () => {
     container.replaceChildren(...addCardsContent());
 }
 
-rewindLeftBtn.addEventListener('click', openFirstPage);
-rewindRightBtn.addEventListener('click', openLastPage);
-rewindOneLeftBtn.addEventListener('click', openPrevPage);
-rewindOneRightBtn.addEventListener('click', openNextPage);
-window.addEventListener('resize', changeWindowWidth);
+if (rewindLeftBtn) {
+    rewindLeftBtn.addEventListener('click', openFirstPage);
+}
+if (rewindRightBtn) {
+    rewindRightBtn.addEventListener('click', openLastPage);
+}
+if (rewindOneLeftBtn) {
+    rewindOneLeftBtn.addEventListener('click', openPrevPage);
+}
+if (rewindOneRightBtn) {
+    rewindOneRightBtn.addEventListener('click', openNextPage);
+}
+
+if (container) {
+    window.addEventListener('resize', changeWindowWidth);
+}
+
