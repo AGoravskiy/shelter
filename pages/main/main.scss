@@ -350,7 +350,7 @@
         }
 
         &:hover {
-            border: none;
+            border: 2px solid $color-primary-l;
             background-color: $color-primary-l;
             cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
         }
@@ -411,10 +411,11 @@
             border-radius: 2.6rem;
 
             &:hover {
-                border: none;
+                border: 2px solid $color-primary-l;
                 background-color: $color-primary-l;
                 cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
             }
+
             &:active,
             &:focus {
                 outline: none;

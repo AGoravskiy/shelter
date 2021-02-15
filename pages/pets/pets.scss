@@ -274,7 +274,7 @@
             border-radius: 2.6rem;
 
             &:hover {
-                border: none;
+                border: 2px solid $color-primary-l;
                 background-color: $color-primary-l;
                 cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
                 
@@ -306,7 +306,7 @@
             transition-duration: 0.5s;
 
             &:hover {
-                border: none;
+                border: 2px solid $color-primary-l;
                 background-color: $color-primary-l;
                 cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
             }
