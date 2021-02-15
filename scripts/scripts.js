@@ -96,17 +96,31 @@ function genSliderContent() {
         }
     }
 
-    document.querySelector('.slider-content__card-first > .slider-img').setAttribute('src', `${newSliderContent[0].img}`);
-    document.querySelector('.slider-content__card-first > .slider-img').setAttribute('alt', `${newSliderContent[0].name}`);
-    document.querySelector('.slider-content__card-first > .slider-content__card-title').textContent =  `${newSliderContent[0].name}`;
+    const sliderCards = document.querySelectorAll('.our_friends__slider-content > div');
 
-    document.querySelector('.slider-content__card-second > .slider-img').setAttribute('src', `${newSliderContent[1].img}`);
-    document.querySelector('.slider-content__card-second > .slider-img').setAttribute('alt', `${newSliderContent[1].name}`);
-    document.querySelector('.slider-content__card-second > .slider-content__card-title').textContent =  `${newSliderContent[1].name}`;
+    sliderCards.forEach(card => {
+        card.style.transform = 'scale(1, 0.1)';
+    });
 
-    document.querySelector('.slider-content__card-third > .slider-img').setAttribute('src', `${newSliderContent[2].img}`);
-    document.querySelector('.slider-content__card-third > .slider-img').setAttribute('alt', `${newSliderContent[2].name}`);
-    document.querySelector('.slider-content__card-third > .slider-content__card-title').textContent =  `${newSliderContent[2].name}`;
+    setTimeout(() => {
+        document.querySelector('.slider-content__card-first > .slider-img').setAttribute('src', `${newSliderContent[0].img}`);
+        document.querySelector('.slider-content__card-first > .slider-img').setAttribute('alt', `${newSliderContent[0].name}`);
+        document.querySelector('.slider-content__card-first > .slider-content__card-title').textContent =  `${newSliderContent[0].name}`;
+    
+        document.querySelector('.slider-content__card-second > .slider-img').setAttribute('src', `${newSliderContent[1].img}`);
+        document.querySelector('.slider-content__card-second > .slider-img').setAttribute('alt', `${newSliderContent[1].name}`);
+        document.querySelector('.slider-content__card-second > .slider-content__card-title').textContent =  `${newSliderContent[1].name}`;
+    
+        document.querySelector('.slider-content__card-third > .slider-img').setAttribute('src', `${newSliderContent[2].img}`);
+        document.querySelector('.slider-content__card-third > .slider-img').setAttribute('alt', `${newSliderContent[2].name}`);
+        document.querySelector('.slider-content__card-third > .slider-content__card-title').textContent =  `${newSliderContent[2].name}`;
+
+        sliderCards.forEach(card => {
+            card.style.transform = 'scale(1, 1)';
+        });
+    }, 500);
+
+    
 }
 
 sliderBtns.forEach(btn => btn.addEventListener('click', genSliderContent));
@@ -257,11 +271,13 @@ updatePaginationCards();
 
 const addCardsContent = () => {
     const newCards = [];
+
     for (let i = 0; i < totalPetOnPage; i++) {
         const petIndex = totalPetOnPage * (pageNum - 1) + i;
         const pet = uniqPets[randomNumArr[petIndex]];
         const petCard = document.createElement('div');
         petCard.setAttribute('class', 'slider-content__card');
+        petCard.classList.add('hidden');
         const cardImg = document.createElement('img');
         cardImg.setAttribute('class', 'slider-img');
         cardImg.setAttribute('src', `${pet.img}`);
@@ -276,11 +292,26 @@ const addCardsContent = () => {
         petCard.addEventListener('click', openPopup);
         newCards.push(petCard);
     }
+
     return newCards;
 }
 
 if (container) {
     container.replaceChildren(...addCardsContent());
+    setTimeout(() => {
+        document.querySelectorAll('.pets__main-content-cards__container > div').forEach(card => card.classList.remove('hidden'));
+    }, 500);
+    
+}
+
+const addCards = () => {
+    document.querySelectorAll('.pets__main-content-cards__container > div').forEach(card => card.classList.add('hidden'));
+    setTimeout(() => {
+        container.replaceChildren(...addCardsContent());
+        setTimeout(() => {
+            document.querySelectorAll('.pets__main-content-cards__container > div').forEach(card => card.classList.remove('hidden'));
+        }, 50);
+    }, 500);
 }
 
 
@@ -291,7 +322,8 @@ const openFirstPage = () => {
     rewindOneLeftBtn.disabled = true;
     rewindRightBtn.disabled = false;
     rewindOneRightBtn.disabled = false;
-    container.replaceChildren(...addCardsContent());
+
+    addCards();
 }
 
 const openLastPage = () => {
@@ -301,7 +333,8 @@ const openLastPage = () => {
     rewindRightBtn.disabled = true;
     rewindLeftBtn.disabled = false;
     rewindOneLeftBtn.disabled = false;
-    container.replaceChildren(...addCardsContent());
+
+    addCards();
 }
 
 const openPrevPage = () => {
@@ -315,7 +348,8 @@ const openPrevPage = () => {
         rewindLeftBtn.disabled = true;
         rewindOneLeftBtn.disabled = true;
     }
-    container.replaceChildren(...addCardsContent());
+
+    addCards();
 }
 
 const openNextPage = () => {
@@ -329,12 +363,13 @@ const openNextPage = () => {
         rewindOneRightBtn.disabled = true;
         rewindRightBtn.disabled = true;
     }
-    container.replaceChildren(...addCardsContent());
+
+    addCards();
 }
 
 const changeWindowWidth = () => {
     updatePaginationCards();
-    container.replaceChildren(...addCardsContent());
+    addCards();
 }
 
 if (rewindLeftBtn) {

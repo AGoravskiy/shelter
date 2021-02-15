@@ -9,6 +9,7 @@
     width: 100vw;
     max-width: 100%;
     background-color: $color-light-xl;
+    z-index: 10;
 }
 
 .wrapper {
@@ -237,7 +238,7 @@
             align-items: center;
             background-color: $color-light-s;
             border-radius: 1rem;
-            transition-duration: 0.5s;
+            transition: all .5s ease-out;
 
             &:hover {
                 background-color: $color-light-xl;
@@ -399,6 +400,10 @@
             }
         }
     }
+}
+
+.hidden {
+    opacity: 0;
 }
 
 @import '../../styles/components/popup.component';
