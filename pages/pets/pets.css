@@ -387,7 +387,7 @@ body {
 }
 
 .pets__main-content-cards__container .slider-content__card-btn:hover {
-  border: none;
+  border: 2px solid #fddcc4;
   background-color: #fddcc4;
   cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
 }
@@ -433,7 +433,7 @@ body {
 }
 
 .pets__main-content-paginations .paginations-btn:hover {
-  border: none;
+  border: 2px solid #fddcc4;
   background-color: #fddcc4;
   cursor: url(../../assets/icons/icon-cursore-hover.png), pointer;
 }
