@@ -515,8 +515,8 @@ body {
           align-items: center;
   background-color: #fafafa;
   border-radius: 1rem;
-  -webkit-transform: 1s;
-          transform: 1s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .our_friends__slider .our_friends__slider-content .slider-content__card-first:hover,

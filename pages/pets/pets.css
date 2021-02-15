@@ -20,6 +20,7 @@ body {
   width: 100vw;
   max-width: 100%;
   background-color: #ffffff;
+  z-index: 10;
 }
 
 .wrapper {
@@ -350,8 +351,8 @@ body {
           align-items: center;
   background-color: #fafafa;
   border-radius: 1rem;
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
+  -webkit-transition: all .5s ease-out;
+  transition: all .5s ease-out;
 }
 
 .pets__main-content-cards__container .slider-content__card:hover {
@@ -564,6 +565,10 @@ body {
 
 .footer .footer__content-img:nth-child(2) {
   display: none;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .popup {
